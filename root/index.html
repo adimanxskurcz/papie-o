@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="openWindows()">papieżuj</button>
+<audio id="myAudio" src="dzieciak.mp3" type="audio/mpeg"></audio>
+<script>
+var dx = 2;
+var dy = 2;
+var x = 0;
+var y = 0;
+var width = 200;
+var height = 100;
+var intervalId;
+
+function openWindows() {
+  var audio = document.getElementById("myAudio");
+  audio.play();
+ var context = new (window.AudioContext || window.webkitAudioContext)();
+    var oscillator = context.createOscillator();
+
+    var gainNode = context.createGain();
+    gainNode.gain.value = 0.1; 
+
+    oscillator.type = 'Sawtooth'; 
+    oscillator.frequency.value = 1000; 
+
+    oscillator.connect(gainNode);
+    gainNode.connect(context.destination);
+
+    oscillator.start();
+
+
+ var gifWindow = window.open("", "", "width=500,height=500");
+  var gifURL = "https://media.tenor.com/Jj8r2OwBCt4AAAAi/hello-there-2137.gif"; // Zmień na URL swojego pliku GIF
+  gifWindow.document.write('<!DOCTYPE html><html><body><img src="' + gifURL + '" alt="GIF"></body></html>');
+    var myWindow = window.open("", "", "width=" + width + ",height=" + height);
+
+  intervalId = setInterval(function() {
+    if (x + dx > window.screen.availWidth - width || x + dx < 0) dx = -dx;
+    if (y + dy > window.screen.availHeight - height || y + dy < 0) dy = -dy;
+    x += dx;
+    y += dy;
+    myWindow.moveTo(x, y);
+  }, 1);
+  intervalId = setInterval(function() {
+    if (x + dx > window.screen.availWidth - width || x + dx < 0) dx = -dx;
+    if (y + dy > window.screen.availHeight - height || y + dy < 0) dy = -dy;
+    x += dx;
+    y += dy;
+    gifWindow(x, y);
+  }, 1);
+
+
+ 
+  var youTubeWindow = window.open("", "", "width=420,height=315");
+  var youTubeID = "qhSJ_FgKRn8"; 
+  youTubeWindow.document.write('<!DOCTYPE html><html><body><iframe width="420" height="315" src="https://www.youtube.com/embed/' + youTubeID + '?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></body></html>');
+    var papajwindow = window.open("", "", "width=420,height=315");
+  var ydubeID = "fBCQXm2GhwU"; 
+  papajwindow.document.write('<!DOCTYPE html><html><body><iframe width="420" height="315" src="https://www.youtube.com/embed/' + ydubeID + '?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></body></html>');
+  
+  var soundCloudWindow = window.open("", "", "width=500,height=500");
+  var soundCloudURL = "https://soundcloud.com/nha-online/co-robi-jan-pawe-ii-z-dzie-mi";
+  soundCloudWindow.document.write('<!DOCTYPE html><html><body><iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=' + encodeURIComponent(soundCloudURL) + '&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe></body></html>');
+}
+</script>
+
+</body>
+</html>
